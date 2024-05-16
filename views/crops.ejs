@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stardew Crops</title>
+</head>
+<body>
+    <%- include("./partials/nav.ejs") %>
+    <h1>Stardew Valley Crops</h1>
+    <ul>
+        <% stardewcrops.forEach((crop) => { %>
+            <li><a href="stardewcrops/<%= crop._id %>"><%= crop.name %></a></li>
+        <% }) %>   
+    </ul>
+</body>
+</html>

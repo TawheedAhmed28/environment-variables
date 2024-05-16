@@ -11,7 +11,7 @@ const StardewValleyCrops = require("./models/stardewvalleycrops.js")
 mongoose.connect(process.env.MONGODB_URI)
 
 app.get('/', (req, res) => {
-  res.send('The server is running');
+  res.render('home.ejs');
 });
 
 app.use(express.json())
@@ -23,7 +23,7 @@ app.use(express.json())
 app.get("/stardewcrops", async (req, res) => {
   const stardewcrops = await StardewValleyCrops.find()
   console.log(stardewcrops)
-  res.send(stardewcrops)
+  res.render("crops.ejs", {stardewcrops})
 })
 
 // * Adding (posting) a crop:
@@ -38,7 +38,7 @@ app.post("/stardewcrops", async (req, res) => {
 
 app.get("/stardewcrops/:cropID", async (req, res) => {
   const stardewcrop = await StardewValleyCrops.findById(req.params.cropID)
-  res.send(stardewcrop)
+  res.render("cropinfo.ejs", {stardewcrop})
 })
 
 // * Deleting an individual crop:
@@ -54,6 +54,8 @@ app.put("/stardewcrops/:cropID", async (req, res) => {
   const stardewcrop = await StardewValleyCrops.findByIdAndUpdate(req.params.cropID, req.body)
   res.send(stardewcrop)
 })
+
+// ? findByIdAndUpdate(req.params.cropID, req.body, {new: true}) would still push the correct info to MongoDB, but instead would return the new object in Postman instead of the old one, as seen with my code here
 
 // App "listener":
 
