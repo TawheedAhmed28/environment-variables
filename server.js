@@ -16,6 +16,8 @@ app.get('/', (req, res) => {
 
 app.use(express.json())
 
+/*-----------------------------------------------------------------------------------------*/
+
 // * Getting all the crops:
 
 app.get("/stardewcrops", async (req, res) => {
@@ -24,16 +26,36 @@ app.get("/stardewcrops", async (req, res) => {
   res.send(stardewcrops)
 })
 
+// * Adding (posting) a crop:
+
 app.post("/stardewcrops", async (req, res) => {
   console.log(req.body)
   const stardewcrop = await StardewValleyCrops.create(req.body)
   res.send(stardewcrop)
 })
 
+// * Getting an individual crop:
+
 app.get("/stardewcrops/:cropID", async (req, res) => {
   const stardewcrop = await StardewValleyCrops.findById(req.params.cropID)
   res.send(stardewcrop)
 })
+
+// * Deleting an individual crop:
+
+app.delete("/stardewcrops/:cropID", async (req, res) => {
+  const stardewcrop = await StardewValleyCrops.findByIdAndDelete(req.params.cropID)
+  res.send(stardewcrop)
+})
+
+// * Editing (putting) an individual crop:
+
+app.put("/stardewcrops/:cropID", async (req, res) => {
+  const stardewcrop = await StardewValleyCrops.findByIdAndUpdate(req.params.cropID, req.body)
+  res.send(stardewcrop)
+})
+
+// App "listener":
 
 app.listen(3000, () => {
   console.log('Listening on port 3000');
