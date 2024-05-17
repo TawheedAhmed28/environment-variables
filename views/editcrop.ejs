@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit <%= crop.name %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
+</head>
+<body>
+    <%- include("./partials/nav.ejs") %>
+    <h1>Edit <%= crop.name %></h1>
+    <form action="/stardewcrops/<%= crop._id %>?_method=PUT" method="POST">
+        <label for="name">Crop name:</label>
+        <input type="text" name="name" id="name" value="<%= crop.name %>">
+        <label for="days">Growth days (seed to crop):</label>
+        <input type="text" name="growth_days" id="days" value="<%= crop.growth_days %>">
+        <label for="season">Season:</label>    
+        <input type="text" name="season" id="season" value="<%= crop.season %>">
+        <button type="submit">Update Crop</button>
+    </form>
+</body>
+</html>

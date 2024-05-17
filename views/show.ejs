@@ -4,11 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SDV - <%= stardewcrop.name %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
 </head>
 <body>
     <%- include("./partials/nav.ejs") %>
     <h1><%= stardewcrop.name %></h1>
     <p>Time to grow: <%= stardewcrop.growth_days %> days</p>
     <p>Season: <%= stardewcrop.season %></p>
+    <a href="/stardewcrops/<%= stardewcrop._id %>/edit">Edit this crop's info</a>   
+    <form action="/stardewcrops/<%= stardewcrop._id %>?_method=DELETE" method="POST">
+        <button type="submit">Delete this crop</button>
+    </form>
 </body>
 </html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Crop</title>
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
+</head>
+<body>
+    <%- include("./partials/nav.ejs") %>
+    <h1>Add a crop to the list!</h1>
+    <form action="/stardewcrops" method="POST">
+    <% // note that the form action is what page we want to do something to, and the method is what we want to do to said page %>
+    <label for="name">Crop name:</label>
+    <input type="text" name="name" id="name">
+    <label for="days">Growth days (seed to crop):</label>
+    <input type="text" name="growth_days" id="days">
+    <label for="season">Season:</label>    
+    <input type="text" name="season" id="season">
+
+    <button type="submit">Add Crop</button>
+    </form>
+</body>
+</html>
